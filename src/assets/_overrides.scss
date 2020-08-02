@@ -4,3 +4,26 @@
   border-color: darken($color: $primary, $amount: 10);
   border-width: medium;
 }
+
+
+.grid-item {
+  margin-bottom: 2rem;
+  margin-top: 2rem;
+  margin-left: 2rem;
+  margin-right: 2rem;
+  border: 2px solid #333;
+  border-color: hsla(0, 0%, 0%, 0.5);
+  border-radius: 5px;
+  padding: 1rem;
+}
+
+.fontchange {
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+
+
+
+
+
+

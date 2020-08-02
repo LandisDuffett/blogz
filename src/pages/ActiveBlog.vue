@@ -1,12 +1,14 @@
 <template>
-  <div class="active-blog">
-    <h3>Title:{{blog.blog.title}}</h3>
-    <img class="img-fluid" :src="active-blog.imgUrl" />
-    <h3>Blog:{{blog.blog.body}}</h3>
+  <div class="active-blog fontchange">
+    <div class="car col-10 border my-3 rounded ml-3 mb-3 square">
+      <h5>Title: {{blog.blog.title}}</h5>
+      <img class="img-fluid" :src="blog.blog.imgUrl" />
+      <h5 class="bg-info text-light pl-2">{{blog.blog.body}}</h5>
+    </div>
     <div>
       <button
         type="button"
-        class="col-4 mb-3 btn btn-primary btn-lg"
+        class="col-4 my-1 ml-3 btn btn-primary btn-lg"
         data-toggle="modal"
         data-target="#comment-modal"
       >Add Comment</button>
@@ -59,7 +61,15 @@
         </div>
       </div>
     </div>
-    <h3 v-for="comment in comments" :key="comment.blogId">Comment:{{comment.body}}</h3>
+    <div>
+      <div class="grid-item">
+        <p
+          class="car col-10 border rounded mb-3 square bg-info text-light"
+          v-for="comment in comments"
+          :key="comment.id"
+        >Comment: {{comment.body}}</p>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -86,7 +96,7 @@ export default {
   },
   methods: {
     addComment() {
-      this.newComment.blogId = this.blog.id;
+      this.newComment.blogId = this.blog.blog.id;
       this.$store.dispatch("addComment", this.newComment);
       this.newComment = {};
       $("#comment-modal").modal("hide");

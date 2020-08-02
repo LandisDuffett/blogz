@@ -1,15 +1,16 @@
 <template>
-  <div class="home">
-    <h1>Welcome</h1>
+  <div class="home fontchange text-center">
+    <h1>Welcome to Bloggr!</h1>
     <div class="blogs row justify-content-center">
       <!-- Button trigger modal -->
       <button
         type="button"
-        class="col-4 mb-3 btn btn-primary btn-lg"
+        class="col-4 my-3 btn btn-primary btn-lg"
         data-toggle="modal"
         data-target="#blog-modal"
       >Create Blog</button>
     </div>
+    <h5>create your own blog or click on a blog title below</h5>
     <!-- Modal -->
     <div
       class="modal fade"
@@ -110,7 +111,11 @@
       </div>
     </div>
     <!-- Modal End -->
-    <blog v-for="blog in blogs" :blogData="blog" :key="blog.id" />
+    <div class="grid" id="lists">
+      <div class="grid-item">
+        <blog v-for="blog in blogs" :blogData="blog" :key="blog.id" />
+      </div>
+    </div>
   </div>
 </template>
 

@@ -1,11 +1,14 @@
 <template>
-  <div class="car col-3 border rounded mb-3" @click="moveToBlogPage">
+  <div class="car col-12 border rounded mb-3 square" @click="moveToBlogPage">
     <!-- add router link dynamically -->
-    <router-link :to="{name: 'Blog', params: {id: blogData._id}}">
-      <h3>{{blogData.title}}</h3>
-    </router-link>
-    <img class="img-fluid" :src="blogData.imgUrl" />
-    <h3>{{blogData.body}}</h3>
+    <div class="row">
+      <router-link :to="{name: 'Blog', params: {id: blogData._id}}">
+        <h3 class="ml-2">"{{blogData.title}}"</h3>
+      </router-link>
+    </div>
+    <div class="row">
+      <h5 class="ml-2">author: {{blogData.creatorEmail}}</h5>
+    </div>
   </div>
 </template>
 

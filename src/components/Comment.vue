@@ -1,5 +1,5 @@
 <template>
-  <div class="car col-3 border rounded mb-3" @click="moveToBlogPage">
+  <div class="car col-3 border rounded mb-3 bg-info" @click="moveToBlogPage">
     <!-- add router link dynamically -->
     <router-link :to="{name: 'Blog', params: {id: commentData.blogId}}">
       <h3>{{commentData.creatorEmail}}</h3>
