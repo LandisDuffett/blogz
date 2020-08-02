@@ -3,7 +3,7 @@
     <!-- add router link dynamically -->
     <div class="row">
       <router-link :to="{name: 'Blog', params: {id: blogData._id}}">
-        <h3 class="ml-2">"{{blogData.title}}"</h3>
+        <h5 class="ml-2">"{{blogData.title}}"</h5>
       </router-link>
     </div>
     <div class="row">
