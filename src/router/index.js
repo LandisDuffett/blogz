@@ -20,6 +20,11 @@ const routes = [
     component: Profile,
     beforeEnter: authGuard,
   },
+  {
+    path: '/blogs/:id',
+    name: 'Blog',
+    component: () => import(/* webpackChunkName: "activeblog" */ '../pages/ActiveBlog.vue')
+  },
 ];
 
 const router = new VueRouter({
