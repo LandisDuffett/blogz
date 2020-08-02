@@ -33,22 +33,23 @@
           <div class="modal-body">
             <div class="container-fluid">
               <form @submit.prevent="addComment">
-                <div class="form-group row">
-                  <label for="inputName" class="col-sm-1-12 col-form-label">Your Comment:</label>
+                <div class="form-group row justify-content-center">
+                  <label for="inputName" class="col-sm-1-12 col-form-label"></label>
                   <div class="col-sm-1-12">
-                    <input
+                    <textarea
                       type="text"
                       class="form-control"
                       name="title"
                       id="inputName"
-                      placeholder="Enter blog title here..."
+                      placeholder="Enter comment here..."
+                      cols="30"
                       v-model="newComment.body"
                       required
                     />
                   </div>
                 </div>
                 <div class="form-group row">
-                  <div class="offset-sm-2 col-sm-10">
+                  <div class="offset-sm-4 col-sm-10">
                     <button type="submit" class="btn btn-primary">Submit Comment</button>
                   </div>
                 </div>

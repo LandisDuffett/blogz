@@ -32,7 +32,7 @@
             <div class="container-fluid">
               <form @submit.prevent="addBlog">
                 <div class="form-group row">
-                  <label for="inputName" class="col-sm-1-12 col-form-label">Title</label>
+                  <label for="inputName" class="col-sm-1-12 col-form-label"></label>
                   <div class="col-sm-1-12">
                     <input
                       type="text"
@@ -46,19 +46,20 @@
                   </div>
                 </div>
                 <div class="form-group row">
-                  <label for="inputBlog" class="col-sm-1-12 col-form-label">Blog</label>
+                  <label for="inputBlog" class="col-sm-1-12 col-form-label"></label>
                   <div class="col-sm-1-12">
                     <textarea
                       id="inputBlog"
                       v-model="newBlog.body"
                       name="inputBlog"
                       rows="8"
+                      placeholder="Enter blog content here..."
                       cols="50"
                     ></textarea>
                   </div>
                 </div>
                 <div class="form-group row">
-                  <label for="inputTags" class="col-sm-1-12 col-form-label">tags</label>
+                  <label for="inputTags" class="col-sm-1-12 col-form-label"></label>
                   <div class="col-sm-1-12">
                     <input
                       type="text"
@@ -71,20 +72,20 @@
                   </div>
                 </div>
                 <div class="form-group row">
-                  <label for="inputName" class="col-sm-1-12 col-form-label">Your e-mail</label>
+                  <label for="inputName" class="col-sm-1-12 col-form-label"></label>
                   <div class="col-sm-1-12">
                     <input
                       type="text"
                       class="form-control"
                       name="email"
                       id="email"
-                      placeholder="Enter your email address here..."
+                      placeholder="Your email address..."
                       v-model="newBlog.creatorEmail"
                     />
                   </div>
                 </div>
                 <div class="form-group row">
-                  <label for="inputName" class="col-sm-1-12 col-form-label">Image Url</label>
+                  <label for="inputName" class="col-sm-1-12 col-form-label"></label>
                   <div class="col-sm-1-12">
                     <input
                       type="text"
