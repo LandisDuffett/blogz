@@ -106,7 +106,7 @@ export default new Vuex.Store({
     },
     async updateComment({ commit }, updatedComment) {
       try {
-        let res = await api.put("cars/" + updatedComment.id, updatedComment.body)
+        let res = await api.put("comments/" + updatedComment.id, updatedComment)
         commit("setComments", res.data)
       } catch (error) {
         console.error(error);

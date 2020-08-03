@@ -80,7 +80,7 @@
               </div>
               <div class="modal-body">
                 <div class="container-fluid">
-                  <form @submit.prevent="updateComment">
+                  <form @submit.prevent="setActive(comment)">
                     <div class="form-group row justify-content-center">
                       <label for="inputName" class="col-sm-1-12 col-form-label"></label>
                       <div class="col-sm-1-12">
@@ -126,7 +126,7 @@
     data() {
       return {
         newComment: {},
-        updatedComment: { body: this.body, id: this.id },
+        updatedComment: {},
       };
     },
     mounted() {
@@ -154,12 +154,12 @@
       deleteComment(comment) {
         this.$store.dispatch("deleteComment", comment);
       },
+      setActive(comment) {
+        this.updatedComment.id = comment.id
+        this.updatedComment.body = comment.body
+      },
       updateComment() {
-        let updatedComment = {
-          body: updatedComment.body,
-          id: updatedComment.id,
-        };
-        this.$store.dispatch("updateComment", updatedComment);
+        this.$store.dispatch("updateComment", this.updatedComment);
       },
     },
     components: {
