@@ -93,10 +93,13 @@ export default new Vuex.Store({
         console.error(error);
       }
     },
-    async deleteComment({ commit, dispatch, state }, commentId) {
+    //needs both commentId and blogId (could pass whole commentObject)
+    async deleteComment({ commit, dispatch, state }, comment) {
       try {
-        let res = await api.delete("comments/" + commentId);
+        let res = await api.delete("comments/" + comment.id);
         commit("setComments")
+        dispatch("getComments", comment.blogId)
+        // get comments , dispatch with comment.blog.id
       } catch (error) {
         console.error(error);
       }

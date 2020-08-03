@@ -6,29 +6,15 @@
       <h5 class="bg-info text-light pl-2">{{blog.blog.body}}</h5>
     </div>
     <div>
-      <button
-        type="button"
-        class="col-4 my-1 ml-3 btn btn-primary btn-lg"
-        data-toggle="modal"
-        data-target="#comment-modal"
-      >Add Comment</button>
+      <button type="button" class="col-4 my-1 ml-3 btn btn-primary btn-lg" data-toggle="modal"
+        data-target="#comment-modal">Add Comment</button>
     </div>
     <div>
-      <button
-        type="button"
-        class="col-4 my-1 ml-3 btn btn-primary btn-lg"
-        @click="deleteBlog"
-      >Delete Blog</button>
+      <button type="button" class="col-4 my-1 ml-3 btn btn-primary btn-lg" @click="deleteBlog">Delete Blog</button>
     </div>
     <!-- Modal -->
-    <div
-      class="modal fade"
-      id="comment-modal"
-      tabindex="-1"
-      role="dialog"
-      aria-labelledby="modelTitleId"
-      aria-hidden="true"
-    >
+    <div class="modal fade" id="comment-modal" tabindex="-1" role="dialog" aria-labelledby="modelTitleId"
+      aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
@@ -43,17 +29,9 @@
                 <div class="form-group row justify-content-center">
                   <label for="inputName" class="col-sm-1-12 col-form-label"></label>
                   <div class="col-sm-1-12">
-                    <textarea
-                      type="text"
-                      class="form-control"
-                      name="title"
-                      id="inputName"
-                      placeholder="Enter comment here..."
-                      cols="30"
-                      v-model="newComment.body"
-                      required
-                    />
-                  </div>
+                    <textarea type="text" class="form-control" name="title" id="inputName"
+                      placeholder="Enter comment here..." cols="30" v-model="newComment.body" required />
+                    </div>
                 </div>
                 <div class="form-group row">
                   <div class="offset-sm-4 col-sm-10">
@@ -80,8 +58,10 @@
           <button
             type="button"
             class="col-4 my-1 ml-3 btn btn-primary btn-lg"
-            @click.prevent="deleteComment(comment.id)"
+            @click.prevent="deleteComment(comment)"
           >Delete</button>
+          <button type="button" class="col-4 my-3 btn btn-primary btn-lg" data-toggle="modal" data-target="#edit-modal">Edit
+            comment</button>
             <div
           class="modal fade"
           id="edit-modal"
@@ -128,73 +108,64 @@
               </div>
             </div>
           </div>
-          <button
-            type="button"
-            class="col-4 my-1 ml-3 btn btn-primary btn-lg"
-            @click.prevent="deleteComment(comment.id)"
-          >Delete</button>
+         
 
-            <button
-        type="button"
-        class="col-4 my-3 btn btn-primary btn-lg"
-        data-toggle="modal"
-        data-target="#edit-modal"
-      >Edit comment</button>
-
+            
+</p>
+        
         </div>
-        </p>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import Comment from "../components/Comment";
-export default {
-  name: "active-blog",
-  data() {
-    return {
-      newComment: {},
-      updatedComment: { body: this.body, id: this.id },
-    };
-  },
-  mounted() {
-    this.$store.dispatch("getBlog", this.$route.params.id);
-    this.$store.dispatch("getComments", this.$route.params.id);
-  },
-  computed: {
-    blog() {
-      return this.$store.state.activeBlog;
-    },
-    comments() {
-      return this.$store.state.comments;
-    },
-  },
-  methods: {
-    addComment() {
-      this.newComment.blogId = this.blog.blog.id;
-      this.$store.dispatch("addComment", this.newComment);
-      this.newComment = {};
-      $("#comment-modal").modal("hide");
-    },
-    deleteBlog() {
-      this.$store.dispatch("deleteBlog", this.blog.blog.id);
-    },
-    deleteComment(commentId) {
-      this.$store.dispatch("deleteComment", commentId);
-    },
-    updateComment() {
-      let updatedComment = {
-        body: updatedComment.body,
-        id: updatedComment.id,
+  import Comment from "../components/Comment";
+  export default {
+    name: "active-blog",
+    data() {
+      return {
+        newComment: {},
+        updatedComment: { body: this.body, id: this.id },
       };
-      this.$store.dispatch("updateComment", updatedComment);
     },
-  },
-  components: {
-    Comment,
-  },
-};
+    mounted() {
+      this.$store.dispatch("getBlog", this.$route.params.id);
+      this.$store.dispatch("getComments", this.$route.params.id);
+    },
+    computed: {
+      blog() {
+        return this.$store.state.activeBlog;
+      },
+      comments() {
+        return this.$store.state.comments;
+      },
+    },
+    methods: {
+      addComment() {
+        this.newComment.blogId = this.blog.blog.id;
+        this.$store.dispatch("addComment", this.newComment);
+        this.newComment = {};
+        $("#comment-modal").modal("hide");
+      },
+      deleteBlog() {
+        this.$store.dispatch("deleteBlog", this.blog.blog.id);
+      },
+      deleteComment(comment) {
+        this.$store.dispatch("deleteComment", comment);
+      },
+      updateComment() {
+        let updatedComment = {
+          body: updatedComment.body,
+          id: updatedComment.id,
+        };
+        this.$store.dispatch("updateComment", updatedComment);
+      },
+    },
+    components: {
+      Comment,
+    },
+  };
 </script>
 
 
