@@ -13,6 +13,13 @@
         data-target="#comment-modal"
       >Add Comment</button>
     </div>
+    <div>
+      <button
+        type="button"
+        class="col-4 my-1 ml-3 btn btn-primary btn-lg"
+        @click="deleteBlog"
+      >Delete Blog</button>
+    </div>
     <!-- Modal -->
     <div
       class="modal fade"
@@ -65,10 +72,17 @@
     <div>
       <div class="grid-item">
         <p
-          class="car col-10 border rounded mb-3 square bg-info text-light"
           v-for="comment in comments"
           :key="comment.id"
-        >Comment: {{comment.body}}</p>
+          class="car col-10 border rounded mb-3 square bg-info text-light"
+        >
+          Comment: {{comment.body}}
+          <button
+            type="button"
+            class="col-4 my-1 ml-3 btn btn-primary btn-lg"
+            @click="deleteComment(comment.id)"
+          >Delete</button>
+        </p>
       </div>
     </div>
   </div>
@@ -101,6 +115,12 @@ export default {
       this.$store.dispatch("addComment", this.newComment);
       this.newComment = {};
       $("#comment-modal").modal("hide");
+    },
+    deleteBlog() {
+      this.$store.dispatch("deleteBlog", this.blog.blog.id);
+    },
+    deleteComment(commentId) {
+      this.$store.dispatch("deleteComment", commentId);
     },
   },
   components: {
