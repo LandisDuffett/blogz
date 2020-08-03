@@ -80,8 +80,68 @@
           <button
             type="button"
             class="col-4 my-1 ml-3 btn btn-primary btn-lg"
-            @click="deleteComment(comment.id)"
+            @click.prevent="deleteComment(comment.id)"
           >Delete</button>
+            <div
+          class="modal fade"
+          id="edit-modal"
+          tabindex="-1"
+          role="dialog"
+          aria-labelledby="modelTitleId"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">Edit Comment</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <div class="container-fluid">
+                  <form @submit.prevent="updateComment">
+                    <div class="form-group row justify-content-center">
+                      <label for="inputName" class="col-sm-1-12 col-form-label"></label>
+                      <div class="col-sm-1-12">
+                        <textarea
+                          type="text"
+                          class="form-control"
+                          name="title"
+                          id="inputName"
+                          cols="30"
+                          v-model="updatedComment.body"
+                          required
+                        />
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <div class="offset-sm-4 col-sm-10">
+                        <button type="submit" class="btn btn-primary">Submit Comment</button>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+          <button
+            type="button"
+            class="col-4 my-1 ml-3 btn btn-primary btn-lg"
+            @click.prevent="deleteComment(comment.id)"
+          >Delete</button>
+
+            <button
+        type="button"
+        class="col-4 my-3 btn btn-primary btn-lg"
+        data-toggle="modal"
+        data-target="#edit-modal"
+      >Edit comment</button>
+
+        </div>
         </p>
       </div>
     </div>
@@ -95,6 +155,7 @@ export default {
   data() {
     return {
       newComment: {},
+      updatedComment: { body: this.body, id: this.id },
     };
   },
   mounted() {
@@ -121,6 +182,13 @@ export default {
     },
     deleteComment(commentId) {
       this.$store.dispatch("deleteComment", commentId);
+    },
+    updateComment() {
+      let updatedComment = {
+        body: updatedComment.body,
+        id: updatedComment.id,
+      };
+      this.$store.dispatch("updateComment", updatedComment);
     },
   },
   components: {
